@@ -5,40 +5,42 @@
 @include('alert')
 <div class="container">
     <nav class="navbar navbar-light justify-content-center">
-            <h1>View All Users</h1>
+            <h1>View All Products</h1>
     </nav>
 </div>
 @endsection
 
 @section('bodycontent')
 
-<table class="table table-bodered bg-light">
-        <thead>
-            <tr>
-                <td><h4>ID</h4></td>
-                <td></td>
-                <td><h4>Name</h4></td>
-                <td><h4>Email</h4></td>
-                <td><h4>Phone</h4></td>
-                <td class="text-center"><h4>Action</h4></td>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($datas as $data)
-            <tr>
-                <td>{{ $data->id }}</td>
-                <td><img src="{{ asset("uploads/user_imgs/".$data->image) }}" class="img-circle elevation-2" width="50" height="40"></td>
-                <td>{{ $data->name }}</td>
-                <td>{{ $data->email }}</td>
-                <td>{{ $data->phone }}</td>
+<div class="container">
+    <div class="row">
+        @foreach($products as $product)
+        <div class="col-md-4 mt-3">
+                <div class="card">
+                        <!-- Card image -->
 
-                <td class="text-center">
-                    <a href="{{ url("admin/user/$data->id/edit") }}" class="btn btn-primary mr-3"><i class="fas fa-edit">Edit User</i></a>
-                    <a href="{{ url("admin/user/$data->id/delete") }}" onclick="return confirm('Warning(Not to delete) : That can effect the products that you post in this city')" class="btn btn-danger"><i class="fas fa-trash-alt">Delete User</i></a>
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-  </table>
+                    <img class="card-img-top" src="{{ asset('uploads/car_imgs/'. explode('|',$product->images)[0]) }}" style="width:300;height:180px" alt="Card image cap">
+
+
+                    <!-- Card content -->
+                    <div class="card-body">
+                        <!-- Title -->
+                        <h4 class="card-title"><a>-{{ $product->name }}</a></h4><br>
+                        <!-- Text -->
+                        <p class="card-text">-{{ $product->price }} lkhs</p>
+                        <p>Content : {{ $product->user->phone }}</p>
+                        <!-- Button -->
+                            <div class="row justify-content-center">
+                                <a href="{{ url("user/product/$product->id/show") }}" class="btn btn-sm btn-primary"><i class="fas fa-eye mr-2"></i>View Detail</a>
+                            </div>
+                    </div>
+                </div>
+        </div>
+        @endforeach
+    </div>
+    <div class="row">
+        {{ $products->links() }}
+    </div>
+</div>
 
 @endsection

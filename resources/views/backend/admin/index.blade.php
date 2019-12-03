@@ -29,11 +29,15 @@
                         <h4 class="card-title"><a>-{{ $product->name }}</a></h4><br>
                         <!-- Text -->
                         <p class="card-text">-{{ $product->price }} lkhs</p>
-                        <p>Content : 09693533352</p>
+                        <p>Content : {{ $product->user->phone }}</p>
+                        <i class="text-muted">Created-at - {{ $product->created_at->diffForHumans() }}</i>
+
                         <!-- Button -->
                             <div class="row justify-content-between">
-                                <a href="{{ url("admin/post/$product->id/show") }}" class="btn btn-sm btn-info"><i class="fas fa-eye">View</i></a>
-                                <a href="{{ url("admin/post/$product->id/delete") }}" onclick="return confirm('Are you sure?')" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt">Delete</i></a>
+                                <a href="{{ url("admin/post/$product->id/show") }}" class="btn btn-info"><i class="fas fa-eye">View</i></a>
+                                <a href="{{ url("admin/post/$product->id/delete") }}" onclick="return confirm('Are you sure?')" class="btn btn-danger"><i class="fas fa-trash-alt">Delete</i></a>
+
+                                {{-- <a href="{{ url("admin/post/$product->id/delete") }}" onclick="return confirm('Are you sure?')" class="btn btn-danger"><i class="fas fa-trash-alt">Delete</i></a> --}}
                             </div>
                     </div>
                 </div>

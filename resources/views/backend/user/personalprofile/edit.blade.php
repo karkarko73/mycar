@@ -5,7 +5,7 @@
 @include('alert')
 <div class="container">
     <nav class="navbar navbar-light justify-content-center">
-            <h1>Edit Users</h1>
+            <h1>Profile Edit</h1>
     </nav>
 </div>
 @endsection
@@ -15,7 +15,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-10">
-            <form action="{{ url("admin/user/$data->id/edit") }}" method="post" enctype="multipart/form-data" >
+            <form action="{{ url("user/personalaccount/$data->id/edit") }}" method="post" enctype="multipart/form-data" >
                 @csrf
                 <div class="form-group row">
                         <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
@@ -38,19 +38,6 @@
                         </div>
                 </div>
 
-                <div class="form-group row">
-                        <label for="roleuser" class="col-sm-2 col-form-label">Role</label>
-                        <div class="col-sm-10">
-                            <select id="roleuser" class="form-control @error('city_id') is-invalid @enderror" name="role">
-                                    <option>Choose...</option>
-                                    @foreach ($datas as $item)
-                                        <option @if($data->role ==  $item->role) selected
-                                                @endif>{{ $item->role }}</option>
-                                    @endforeach
-                            </select>
-                        </div>
-                        @error('city_id')<div class="text-danger">{{ $message }}</div>@enderror
-                </div>
 
                 <div class="form-group row">
                         <label for="inputPassword" class="col-sm-2 col-form-label">Old Password</label>
@@ -60,7 +47,7 @@
                 </div>
 
                 <div class="form-group row">
-                        <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+                        <label for="inputPassword" class="col-sm-2 col-form-label">New Password</label>
                         <div class="col-sm-10">
                           <input type="password" class="form-control" id="inputPassword" name="new_password" placeholder="Password">
                         </div>
@@ -76,7 +63,7 @@
                     </div>
                 </div>
 
-                <a href="{{ url('admin/user') }}" class="btn btn-primary" >Back</a>
+                <a href="{{ url('user/personalaccount/'.auth()->user()->id.'/show') }}" class="btn btn-primary" >Back</a>
                 <button type="submit" class="btn btn-success float-right">Submit</button>
               </form>
         </div>

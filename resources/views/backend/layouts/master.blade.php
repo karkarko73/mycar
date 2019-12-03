@@ -47,7 +47,7 @@
   </footer>
 </div>
 <!-- ./wrapper -->
-
+<script src="{{ asset('node_modules/sweetalert/dist/sweetalert.min.js') }}"></script>
 <!-- REQUIRED SCRIPTS -->
 <script src="{{ asset('js/app.js') }}"></script>
 <!-- jQuery -->

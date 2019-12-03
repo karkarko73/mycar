@@ -14,18 +14,61 @@
           <img src="{{ asset("uploads/user_imgs/".auth()->user()->image) }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="{{ url("admin/user/auth()->user()->id/edit") }}" class="d-block">{{ auth()->user()->name }}</a>
+          <a href="{{ url('user/personalaccount/'.auth()->user()->id.'/show') }}" class="d-block">{{ auth()->user()->name }}</a>
         </div>
       </div>
 
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-        {{----------------------------- My Product Start --------------------------}}
+                <li class="nav-item">
+                        <a href="{{ url('user/personalaccount/'.auth()->user()->id.'/show') }}" class="nav-link">
+                            <i class="fas fa-id-badge"></i>
+                            <p>My Profile</p>
+                        </a>
+                    </li>
+
+                    @can('isUser')
+                    <li class="nav-item">
+                        <a href="{{ url('user/product') }}" class="nav-link">
+                            <i class="fas fa-align-justify"></i>
+                            <p>View All Products</p>
+                        </a>
+                    </li>
+                    @endcan
+        {{----------------------------- My user Product Start --------------------------}}
         <li class="nav-item has-treeview menu-close">
             <a href="#" class="nav-link ">
                     <i class="fas fa-car"></i>
-                    <p>Products</p>
+                    <p>My Product</p>
+                    <i class="right fas fa-angle-left"></i>
+
+            </a>
+        <ul class="nav nav-treeview">
+            <li class="nav-item">
+                <a href="{{ url('user/personalproducts') }}" class="nav-link ">
+                <i class="fas fa-eye nav-icon"></i>
+                <p>Personal product</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ url('user/personalproduct/create') }}" class="nav-link">
+                <i class="fas fa-plus nav-icon"></i>
+                <p>Create product</p>
+                </a>
+            </li>
+
+        </ul>
+        </li>
+      {{--------------------------- My User Product End ------------------------------}}
+
+
+        @can('isAdmin')
+        {{----------------------------- My Admin Product Start --------------------------}}
+        <li class="nav-item has-treeview menu-close">
+            <a href="#" class="nav-link ">
+                    <i class="fas fa-car"></i>
+                    <p>All Products</p>
                     <i class="right fas fa-angle-left"></i>
 
             </a>
@@ -45,7 +88,7 @@
 
         </ul>
         </li>
-      {{--------------------------- My Product End ------------------------------}}
+      {{--------------------------- My Admin Product End ------------------------------}}
 
       {{-- -------------------------City start ---------------------------------}}
       <li class="nav-item has-treeview menu-close">
@@ -102,10 +145,12 @@
 
         <li class="nav-item">
             <a href="{{ url('admin/user') }}" class="nav-link">
-                    <i class="fas fa-user"></i>
+                    <i class="fas fa-users"></i>
                 <p>View all users</p>
             </a>
         </li>
+        @endcan
+
 
         <li class="nav-item">
                 <a href="{{ url('/') }}" class="nav-link">
@@ -122,7 +167,7 @@
         </li>
 
 
-        </ul>
+    </ul>
       </nav>
       <!-- /.sidebar-menu -->
     </div>

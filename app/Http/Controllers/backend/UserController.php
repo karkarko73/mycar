@@ -4,6 +4,7 @@ namespace App\Http\Controllers\backend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Product;
 use Illuminate\Support\Facades\Hash;
 use App\User;
 
@@ -17,7 +18,7 @@ class UserController extends Controller
     public function index()
     {
         $datas = User::all();
-        return view('backend.user.index',compact('datas'));
+        return view('backend.user.adminprofile.index',compact('datas'));
     }
 
     /**
@@ -60,9 +61,12 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $datas = User::all();
+        $datas = [
+            ['role' => 'admin'],
+            ['role' => 'user']
+        ];
         $data = User::findOrFail($id);
-        return view('backend.user.edit',compact('data','datas'));
+        return view('backend.user.adminprofile.edit',compact('data','datas'));
     }
 
     public function update(Request $request, $id)
@@ -95,14 +99,18 @@ class UserController extends Controller
             }
 
             $data->save();
-            return redirect("admin/user/$id/edit")->with('status','User updated successfully!');
+            return redirect("admin/user")->with('status','User updated successfully!');
         }
-        return redirect("admin/user/$id/edit")->with('status','Old password do not match!!');
+        return redirect("admin/user")->with('status','Old password do not match!!');
     }
 
 
     public function destroy($id)
     {
-        //
+        $data = User::findOrFail($id);
+        if($data){
+            $data->delete();
+            return redirect('admin/user')->with('status','User Deleted Successfully!');
+        }
     }
 }

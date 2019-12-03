@@ -24,7 +24,6 @@
 
                             <ol class="carousel-indicators">
                              @foreach(explode('|',$product->images) as $image)
-                             {{-- {{ dd($image) }} --}}
                                 <li data-target="#carouselExampleControls" data-slide-to="{{ $loop->index }}" class="{{ $loop->first ? 'active' : '' }}">
                                     <img src="{{ asset("/uploads/car_imgs/$image") }}" width="100">
                                 </li>
@@ -34,7 +33,7 @@
                             <div class="carousel-inner" role="listbox">
                               @foreach(explode('|',$product->images) as $image)
                                  <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-                                     <img class="d-block img-fluid" src="{{ asset("/uploads/car_imgs/$image") }}">
+                                     <img class="d-block img-fluid"  src="{{ asset("/uploads/car_imgs/$image") }}">
                                  </div>
                               @endforeach
                             </div>

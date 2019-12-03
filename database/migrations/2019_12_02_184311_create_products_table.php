@@ -16,15 +16,19 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->integer('model-year');
+            $table->integer('model_year');
             $table->longText('description');
             $table->bigInteger('price');
-            $table->integer('user_id');
-            $table->integer('cat_id');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->integer('city_id');
+            $table->integer('category_id');
             $table->string('role')->default('user');
             $table->longText('images')->default(null);
             $table->timestamps();
         });
+
+        Schema::enableForeignKeyConstraints();
     }
 
     /**

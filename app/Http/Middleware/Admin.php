@@ -20,7 +20,10 @@ class Admin
             if(auth()->user()->role == "admin"){
                 return $next($request);
             }
-            return redirect('user/product');
+
+            if(auth()->user()->role == "user"){
+                return redirect('user/product');
+            }
         }
         return redirect('/login');
 

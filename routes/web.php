@@ -19,8 +19,24 @@ Route::group(['prefix' => 'admin','namespace' => 'backend','middleware' => 'admi
 });
 
 ///////////////////////// Backend User Product ///////////////////////////////
-Route::group(['prefix' => 'user','namespace' => 'user','middleware' => 'auth' ], function () {
+Route::group(['prefix' => 'user','namespace' => 'user','middlware' => 'adminuser' ], function () {
+    /////////////////////// public product /////////////////////////////
     Route::get('product','ProductController@index');
+    Route::get('product/{id}/show','ProductController@show');
+    /////////////////////// personal product ///////////////////////////
+    Route::get('personalproducts','ProductController@personalproducts');
+    Route::get('personalproducts/{id}/show','ProductController@personalproductshow');
+    Route::get('personalproducts/{id}/edit','ProductController@edit');
+    Route::post('personalproducts/{id}/edit','ProductController@update');
+    Route::get('personalproduct/create','ProductController@create');
+    Route::post('personalproduct/create','ProductController@store');
+
+
+    ////////////////////// personal user account ////////////////////
+    Route::get('personalaccount/{id}/show','UserController@show');
+    Route::get('personalaccount/{id}/edit','UserController@edit');
+    Route::post('personalaccount/{id}/edit','UserController@update');
+
 });
 
 
@@ -47,11 +63,12 @@ Route::group(['prefix' => 'admin','namespace' => 'backend','middleware' => 'admi
 });
 
 
-///////////////////////// user rout ///////////////////////////////
-Route::group(['prefix' => 'admin','namespace' => 'backend'], function () {
+/////////////////////////admin user rout ///////////////////////////////
+Route::group(['prefix' => 'admin','namespace' => 'backend','middleware'=>'admin'], function () {
     Route::get('user','UserController@index');
     Route::get('user/{id}/edit','UserController@edit');
     Route::post('user/{id}/edit','UserController@update');
+    Route::get('user/{id}/delete','UserController@destroy');
 });
 
 
