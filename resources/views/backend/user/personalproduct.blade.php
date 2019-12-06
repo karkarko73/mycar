@@ -33,9 +33,9 @@
                             <i class="text-muted">Created-at - {{ $product->created_at->diffForHumans() }}</i>
 
                             <!-- Button -->
-                                <div class="row justify-content-between">
-                                    <a href="{{ url("user/personalproducts/$product->id/show") }}" class="btn btn-info"><i class="fas fa-eye">View</i></a>
-                                    <a href="{{ url("admin/post/$product->id/delete") }}" onclick="return confirm('Are you sure?')" class="btn btn-danger"><i class="fas fa-trash-alt">Delete</i></a>
+                                <div class="row justify-content-between mt-3">
+                                    <a href="{{ url("user/personalproducts/$product->id/show") }}" class="btn btn-sm btn-info"><i class="fas fa-eye">View</i></a>
+                                    <a href="{{ url("admin/post/$product->id/delete") }}" onclick="return confirm('Are you sure?')" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt">Delete</i></a>
 
                                     {{-- <a href="{{ url("admin/post/$product->id/delete") }}" onclick="return confirm('Are you sure?')" class="btn btn-danger"><i class="fas fa-trash-alt">Delete</i></a> --}}
                                 </div>

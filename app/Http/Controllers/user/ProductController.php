@@ -6,6 +6,7 @@ use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProductRequest;
 use App\Http\Controllers\Controller;
+use Intervention\Image\Facades\Image;
 use App\Product;
 use App\City;
 
@@ -68,7 +69,8 @@ class ProductController extends Controller
             foreach($images as $image){
                 $name = uniqid() .'.'. $image->getClientOriginalExtension();
                 $path = public_path('/uploads/car_imgs/');
-                $image->move($path,$name);
+                $img = Image::make($image)->resize(500,300);
+                $img->save($path.$name);
                 array_push($imgary,$name);
 
             }
@@ -123,7 +125,8 @@ class ProductController extends Controller
             foreach($images as $image){
                 $name =  uniqid() .'.'. $image->getClientOriginalExtension();
                 $path = public_path('/uploads/car_imgs/');
-                $image->move($path,$name);
+                $img = Image::make($image)->resize(500,300);
+                $img->save($path.$name);
                 array_push($imgary,$name);
             }
             $impimg = implode('|',$imgary);

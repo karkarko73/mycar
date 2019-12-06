@@ -86,33 +86,36 @@
                     <button type="submit" class="btn btn-success">Submit</button>
                 </div>
                 <div class="row justify-content-center mt-3">
-                    {{-- <div class="col-md-4"> --}}
+                    <div class="col-md-6">
+                        <div class="card">
                             <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
 
-                                <div class="carousel-inner" role="listbox">
-                                  @foreach(explode('|',$product->images) as $image)
-                                      <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-                                          <img class="d-block w-100" src="{{ asset("/uploads/car_imgs/$image") }}">
-                                      </div>
-                                  @endforeach
-                                </div>
-                                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                                  <span class="carousel-control-prev-icon" aria-hidden="false"></span>
-                                  <span class="sr-only">Previous</span>
-                                </a>
-                                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                                  <span class="carousel-control-next-icon" aria-hidden="false"></span>
-                                  <span class="sr-only">Next</span>
-                                </a>
+                                    <ol class="carousel-indicators">
+                                        @foreach(explode('|',$product->images) as $image)
+                                        <li data-target="#carouselExampleControls" data-slide-to="{{ $loop->index }}" class="{{ $loop->first ? 'active' : '' }}">
+                                            <img src="{{ asset("/uploads/car_imgs/$image") }}" width="100">
+                                        </li>
+                                        @endforeach
+                                    </ol>
 
-                                <ol class="carousel-indicators">
-                                    @foreach(explode('|',$product->images) as $image)
-                                        <li data-target="#carouselExampleControls" data-slide-to="{{ $loop->index }}" class="{{ $loop->first ? 'active' : '' }}"></li>
-                                    @endforeach
-                                </ol>
+                                    <div class="carousel-inner" role="listbox">
+                                        @foreach(explode('|',$product->images) as $image)
+                                            <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
+                                                <img class="d-block img-fluid"  src="{{ asset("/uploads/car_imgs/$image") }}">
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="false"></span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="false"></span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
                             </div>
-                        {{-- <img class="card-img-top mt-3" src="{{ asset("uploads/car_imgs/$product->images") }}" alt="Card image cap"> --}}
-                    {{-- </div> --}}
+                        </div>
+                    </div>
                 </div>
               </form>
         </div>

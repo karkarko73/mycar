@@ -20,4 +20,11 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class)->withDefault();
     }
+
+    public function comments()
+    {
+        return $this->morphMany(Comment::class,'commentable')->whereNull('product_id');
+    }
+
+
 }

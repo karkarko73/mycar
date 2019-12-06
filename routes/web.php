@@ -37,6 +37,16 @@ Route::group(['prefix' => 'user','namespace' => 'user','middlware' => 'adminuser
     Route::get('personalaccount/{id}/edit','UserController@edit');
     Route::post('personalaccount/{id}/edit','UserController@update');
 
+    ////////////////////// Wish list //////////////////////////////////
+    Route::get('wishlist/{id}','WishlistController@add');
+    Route::get('mywishlist','WishlistController@showall');
+    Route::get('mywishlist/{id}/show','WishlistController@show');
+    Route::get('mywishlist/{id}/delete','WishlistController@destroy');
+
+    /////////////////////// Comment //////////////////////////////////
+    Route::post('comment/store','CommentController@store');
+    Route::get('showcomment/{id}','CommentController@show');
+
 });
 
 
@@ -84,8 +94,5 @@ Route::get('logout','Auth\LoginController@logout');
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-Route::get('test', function(){
-    return 'hello';
-});
 
 // url('home#product')

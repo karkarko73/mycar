@@ -6,11 +6,10 @@ namespace App\Http\Controllers\backend;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProductRequest;
 use App\Http\Controllers\Controller;
+use Intervention\Image\Facades\Image;
 use App\Product;
 use App\City;
 use App\Category;
-
-use function Opis\Closure\serialize;
 
 class ProductController extends Controller
 {
@@ -59,7 +58,8 @@ class ProductController extends Controller
             foreach($images as $image){
                 $name = uniqid() .'.'. $image->getClientOriginalExtension();
                 $path = public_path('/uploads/car_imgs/');
-                $image->move($path,$name);
+                $img = Image::make($image)->resize(600,350);
+                $img->save($path.$name);
                 array_push($imgary,$name);
 
             }
@@ -91,6 +91,7 @@ class ProductController extends Controller
 
     public function update(Request $request, $id)
     {
+        // $data = Product::findOrFail($id);
         $data = Product::findOrFail($id);
 
         $city = $request->city;
@@ -118,7 +119,10 @@ class ProductController extends Controller
             foreach($images as $image){
                 $name =  uniqid() .'.'. $image->getClientOriginalExtension();
                 $path = public_path('/uploads/car_imgs/');
-                $image->move($path,$name);
+                //
+                $img = Image::make($image)->resize(500,300);
+                // dd($img);
+                $img->save($path.$name);
                 array_push($imgary,$name);
             }
             $impimg = implode('|',$imgary);

@@ -30,8 +30,15 @@
                         <p class="card-text">-{{ $product->price }} lkhs</p>
                         <p>Content : {{ $product->user->phone }}</p>
                         <!-- Button -->
-                            <div class="row justify-content-center">
+                            <div class="row justify-content-between">
                                 <a href="{{ url("user/product/$product->id/show") }}" class="btn btn-sm btn-primary"><i class="fas fa-eye mr-2"></i>View Detail</a>
+
+                                <form action="{{ url("user/wishlist/$product->id") }}">
+                                    <input type="hidden" value="{{ auth()->user()->id }}" name="user_id">
+                                    <button type="submit" class="btn btn-sm btn-info"><i class="fas fa-plus mr-2"></i>Add Wishlist</button>
+                                {{-- <a href="" class="btn btn-sm btn-info"></a> --}}
+                                </form>
+
                             </div>
                     </div>
                 </div>
