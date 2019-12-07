@@ -34,8 +34,8 @@
 
                             <!-- Button -->
                                 <div class="row justify-content-between mt-3">
-                                    <a href="{{ url("user/personalproducts/$product->id/show") }}" class="btn btn-sm btn-info"><i class="fas fa-eye">View</i></a>
-                                    <a href="{{ url("admin/post/$product->id/delete") }}" onclick="return confirm('Are you sure?')" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt">Delete</i></a>
+                                    <a href="{{ url("user/personalproducts/$product->id/show") }}" class="btn btn-sm btn-info"><i class="fas fa-eye mr-2"></i>View</a>
+                                    <a href="{{ url("admin/post/$product->id/delete") }}" onclick="return confirm('Are you sure?')" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt mr-2"></i>Delete</a>
 
                                     {{-- <a href="{{ url("admin/post/$product->id/delete") }}" onclick="return confirm('Are you sure?')" class="btn btn-danger"><i class="fas fa-trash-alt">Delete</i></a> --}}
                                 </div>

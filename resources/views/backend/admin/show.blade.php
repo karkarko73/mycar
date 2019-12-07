@@ -57,17 +57,43 @@
                     <p class="card-text">Company  - {{ $product->category->name }}</p>
                     <p class="card-text">Model    - {{ $product->model_year }}</p>
                     <p class="card-text">Division - {{ $product->city->name }}</p>
+                    <p class="card-text">Description - {{ $product->description }}</p>
                     <p class="card-text">Seller   - {{ $product->user->name }}</p>
-
-
                     <p class="card-text">Contact - {{ $product->user->phone }}</p>
 
-                    <!-- Button -->
-                        <div class="row justify-content-between">
-                            <a href="{{ url("admin/post") }}" class="btn btn-info"><i class="fas fa-arrow-circle-left">Back</i></a>
-                            <a href="{{ url("admin/post/$product->id/edit") }}" class="btn btn-warning"><i class="fas fa-edit">Edit</i></a>
-                            <a href="{{ url("admin/post/$product->id/delete") }}" onclick="return confirm('Are you sure?')" class="btn btn-danger"><i class="fas fa-trash-alt">Delete</i></a>
+                    <!--Add Comment field -->
+                    <h4 class="text-primary text-center">Add comment</h4>
+                    <form method="post" action="{{ url('user/comment/store') }}">
+                        @csrf
+                        <div class="form-group">
+                            <div class="row">
+                                <input type="text" name="body" class="form-control col-md-8 mr-4" />
+                                <input type="hidden" name="product_id" value="{{ $product->id }}" />
+                                <input type="submit" class="btn btn-secondary" value="Add Comment"/>
+                            </div>
                         </div>
+                    </form>
+
+                    <!-- Display comment field -->
+                    <h5 class="text-center"><i>View Comments</i></h5>
+
+                    @foreach($product->comments as $comment)
+                        <div class="display-comment">
+                            <i class="text-muted">Comment about - {{ $comment->created_at->diffForHumans() }}</i><br>
+                            <strong>{{ $comment->user->name }}</strong>
+                            <p>{{ $comment->body }}</p>
+
+                        </div>
+                    @endforeach
+                    </div>
+                    <!-- Button -->
+                    <div class="card-footer">
+                        <div class="row justify-content-between">
+                                <a href="{{ url("admin/post") }}" class="btn btn-info"><i class="fas fa-arrow-circle-left">Back</i></a>
+                                <a href="{{ url("admin/post/$product->id/edit") }}" class="btn btn-warning"><i class="fas fa-edit">Edit</i></a>
+                                <a href="{{ url("admin/post/$product->id/delete") }}" onclick="return confirm('Are you sure?')" class="btn btn-danger"><i class="fas fa-trash-alt">Delete</i></a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -19,7 +19,7 @@
                     @csrf
                     <div class="form-group">
                             <label for="category">Add category</label>
-                            <input type="name" class="form-control @error('name') is-invalid @enderror" id="city" name="name" value="{{ $data->namename }}">
+                            <input type="name" class="form-control @error('name') is-invalid @enderror" id="city" name="name" value="{{ $data->name }}">
                             @error('name')<div class="alert text-danger">{{ $message }}</div>@enderror
                     </div>
                     <a href="{{ url('admin/category') }}" class="btn btn-info">Back</a>

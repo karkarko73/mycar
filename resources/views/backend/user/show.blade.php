@@ -2,6 +2,7 @@
 @section('title','Product')
 
 @section('headercontent')
+@include('alert')
 <div class="container">
     <nav class="navbar navbar-light justify-content-center">
             <h1>View Product</h1>
@@ -58,15 +59,15 @@
                     <p class="card-text">Company  - {{ $product->category->name }}</p>
                     <p class="card-text">Model    - {{ $product->model_year }}</p>
                     <p class="card-text">Division - {{ $product->city->name }}</p>
-                    <p class="card-text">Desctiption - {{ $product->description }}</p>
+                    <p class="card-text">Description - {{ $product->description }}</p>
                     <p class="card-text">Seller   - {{ $product->user->name }}</p>
                     <p class="card-text">Contact  - {{ $product->user->phone }}</p>
+                    <i class="text-muted">Created-at - {{ $product->created_at->diffForHumans() }}</i><br>
 
-                    <!-- Display comment field -->
 
-
-                    <!-- Comment field -->
-                    <h4 class="text-primary text-center">Add comment</h4>
+                    <!--Add Comment field -->
+                    <hr>
+                    <h4 class="text text-center">Add comment</h4>
                     <form method="post" action="{{ url('user/comment/store') }}">
                         @csrf
                         <div class="form-group">
@@ -78,16 +79,18 @@
                         </div>
                     </form>
 
-                    <!-- Back Button -->
-                    <h5 class="text-center"><i>View Comments</i></h5>
-
-                    {{-- @foreach($product->comments as $item){
-                        <div class="display-comment">
-                            <strong>{{ $item->user->name }}</strong>
-                            <p>{{ $item->body }}</p>
+                    <!-- Display comment field -->
+                    @foreach($product->comments as $comment)
+                        <div class="display-comment mt-3">
+                            <i class="text-muted">Comment about - {{ $comment->created_at->diffForHumans() }}</i><br>
+                            <strong>{{ $comment->user->name }}</strong>
+                            <p>{{ $comment->body }}</p>
+                            <a href="{{ url("user/deletecomment/$comment->id") }}"class="btn btn-sm btn-danger">Del Comment</a>
                         </div>
-                    @endforeach --}}
+                        <hr>
+                    @endforeach
                 </div>
+
 
                 <div class="card-footer">
                     <div class="row float-right">

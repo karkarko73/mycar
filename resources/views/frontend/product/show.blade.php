@@ -55,14 +55,30 @@
                                     <p class="card-text">Company  - {{ $product->category->name }}</p>
                                     <p class="card-text">Model    - {{ $product->model_year }}</p>
                                     <p class="card-text">Division - {{ $product->city->name }}</p>
+                                    <p class="card-text">Desctiption - {{ $product->description }}</p>
                                     <p class="card-text">Seller   - {{ $product->user->name }}</p>
                                     <p class="card-text">Contact - {{ $product->user->phone }}</p>
+                                    <i class="text-muted">Created-at - {{ $product->created_at->diffForHumans() }}</i><br>
 
-                                    <!-- Button -->
-                                        <div class="row justify-content-center">
-                                            <a href="{{ url("/#about") }}" class="btn btn-info"><i class="fas fa-arrow-circle-left">Back</i></a>
+                                    <hr>
+                                    <h4 class="text text-center">Add comment</h4>
+                                    <form>
+                                        @csrf
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <input type="text" name="body" class="form-control col-md-8 mr-4" />
+                                                <input type="submit" onclick="return confirm('Please Register to comment!')" class="btn btn-secondary" value="Add Comment"/>
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                </div>
+                                <div class="card-footer">
+                                        <div class="row float-right">
+                                            <a href="{{ url("/#about") }}" class="btn btn-info"><i class="fas fa-arrow-circle-left mr-2"></i>Back</a>
                                         </div>
                                 </div>
+
                             </div>
                     </div>
                 </div>

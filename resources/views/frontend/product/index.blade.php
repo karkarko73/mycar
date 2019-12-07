@@ -20,6 +20,7 @@
                         <!-- Text -->
                         <p class="card-text">-{{ $product->price }} lkhs</p>
                         <p>Content : 09693533352</p>
+                        <i class="text-muted">Created-at - {{ $product->created_at->diffForHumans() }}</i>
                         <!-- Button -->
                             <div class="row justify-content-center">
                                 <a href="{{ url("post/$product->id/show") }}" class="btn btn-sm btn-primary"><i class="fas fa-eye mr-2"></i>View Detail</a>
@@ -29,7 +30,7 @@
         </div>
         @endforeach
     </div>
-    <div class="row">
+    <div class="row justify-content-center mt-3">
         {{ $products->links() }}
     </div>
 </div>

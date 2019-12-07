@@ -54,7 +54,7 @@
         </div>
         @endforeach
     </div>
-    <div class="row justify-content-center">
+    <div class="row justify-content-center mt-3">
         {{ $products->links() }}
     </div>
 </div>

@@ -9,7 +9,7 @@
     @endcan
 
     @can('isUser')
-    <a href="index3.html" class="brand-link">
+    <a href="#" class="brand-link">
       <img src="{{ asset('adminlte/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
       <span class="brand-text font-weight-light">User Pannel</span>
@@ -31,6 +31,14 @@
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
+                    <li class="nav-item">
+                        <a href="{{ url('user/search') }}" class="nav-link">
+                            <i class="fas fa-search"></i>
+                            <p>Search</p>
+                        </a>
+                    </li>
+
                     <li class="nav-item">
                         <a href="{{ url('user/personalaccount/'.auth()->user()->id.'/show') }}" class="nav-link">
                             <i class="fas fa-id-badge"></i>
@@ -56,7 +64,7 @@
         {{----------------------------- My user Product Start --------------------------}}
         <li class="nav-item has-treeview menu-close">
             <a href="#" class="nav-link ">
-                    <i class="fas fa-car"></i>
+                    <i class="fas fa-user"></i>
                     <p>My Product</p>
                     <i class="right fas fa-angle-left"></i>
 

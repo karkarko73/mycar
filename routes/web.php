@@ -46,6 +46,11 @@ Route::group(['prefix' => 'user','namespace' => 'user','middlware' => 'adminuser
     /////////////////////// Comment //////////////////////////////////
     Route::post('comment/store','CommentController@store');
     Route::get('showcomment/{id}','CommentController@show');
+    Route::get('deletecomment/{id}','CommentController@destroy');
+
+    //////////////////////// Search  /////////////////////////////////
+    Route::get('search','SearchController@search');
+    Route::get('finditem','SearchController@find');
 
 });
 
