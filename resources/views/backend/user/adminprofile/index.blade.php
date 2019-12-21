@@ -2,8 +2,10 @@
 @section('title','User')
 
 @section('headercontent')
-@include('alert')
 <div class="container">
+        <div class="row justify-content-center">
+                <div class="col-md-4">@include('alert')</div>
+        </div>
     <nav class="navbar navbar-light justify-content-center">
             <h1>View All Users</h1>
     </nav>
@@ -33,8 +35,8 @@
                 <td>{{ $data->phone }}</td>
 
                 <td class="text-center">
-                    <a href="{{ url("admin/user/$data->id/edit") }}" class="btn btn-primary mr-3"><i class="fas fa-edit">Edit User</i></a>
-                    <a href="{{ url("admin/user/$data->id/delete") }}" onclick="return confirm('Warning(Not to delete) : That will be delete all posts you had created!')" class="btn btn-danger"><i class="fas fa-trash-alt">Delete User</i></a>
+                    <a href="{{ url("admin/user/$data->id/edit") }}" class="btn btn-sm btn-primary mr-3"><i class="fas fa-edit mr-2"></i>Edit User</a>
+                    <a href="{{ url("admin/user/$data->id/delete") }}" onclick="return confirm('Warning(Not to delete) : That will be delete all posts you had created!')" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt mr-2"></i>Delete User</a>
                 </td>
             </tr>
             @endforeach

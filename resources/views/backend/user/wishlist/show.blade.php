@@ -2,8 +2,10 @@
 @section('title','Show Product')
 
 @section('headercontent')
-@include('alert')
 <div class="container">
+        <div class="row justify-content-center">
+                <div class="col-md-4">@include('alert')</div>
+        </div>
     <nav class="navbar navbar-light justify-content-center">
             <h1>Wishlist Product Show</h1>
     </nav>

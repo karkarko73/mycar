@@ -23,7 +23,6 @@ class Product extends Model
 
     public function comments()
     {
-        // return $this->morphMany(Comment::class, 'commentable')->whereNull('product_id');
         return $this->hasMany('App\Comment','product_id','id');
     }
 

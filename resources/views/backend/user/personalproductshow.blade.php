@@ -93,9 +93,9 @@
 
                 <div class="card-footer">
                     <div class="row justify-content-between">
-                        <a href="{{ url("user/personalproducts") }}" class="btn btn-info"><i class="fas fa-arrow-circle-left mr-2"></i>Back</a>
-                        <a href="{{ url("user/personalproducts/$product->id/edit") }}" class="btn btn-warning"><i class="fas fa-edit mr-2"></i>Edit</a>
-                        <a href="{{ url("admin/post/$product->id/delete") }}" onclick="return confirm('Are you sure?')" class="btn btn-danger"><i class="fas fa-trash-alt mr-2"></i>Delete</a>
+                        <a href="{{ url("user/personalproducts") }}" class="btn btn-sm btn-info"><i class="fas fa-arrow-circle-left mr-2"></i>Back</a>
+                        <a href="{{ url("user/personalproducts/$product->id/edit") }}" class="btn btn-sm btn-warning"><i class="fas fa-edit mr-2"></i>Edit</a>
+                        <a href="{{ url("admin/post/$product->id/delete") }}" onclick="return confirm('Are you sure?')" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt mr-2"></i>Delete</a>
                     </div>
                 </div>
 

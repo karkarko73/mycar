@@ -3,10 +3,13 @@
 
 @section('headercontent')
 <div class="container">
+    <div class="row justify-content-center">
+            <div class="col-md-4">@include('alert')</div>
+    </div>
 
-        <nav class="navbar navbar-light justify-content-center">
-                <a class="navbar-brand" href="#"><h1>Create Product</h1></a>
-        </nav>
+    <nav class="navbar navbar-light justify-content-center">
+            <a class="navbar-brand" href="#"><h1>Create Product</h1></a>
+    </nav>
 
 </div>
 

@@ -2,8 +2,10 @@
 @section('title','Edit User')
 
 @section('headercontent')
-@include('alert')
 <div class="container">
+        <div class="row justify-content-center">
+                <div class="col-md-4">@include('alert')</div>
+        </div>
     <nav class="navbar navbar-light justify-content-center">
             <h1>Edit Users</h1>
     </nav>
@@ -76,8 +78,8 @@
                     </div>
                 </div>
 
-                <a href="{{ url('admin/user') }}" class="btn btn-primary" >Back</a>
-                <button type="submit" class="btn btn-success float-right">Submit</button>
+                <a href="{{ url('admin/user') }}" class="btn btn-sm btn-primary" >Back</a>
+                <button type="submit" class="btn btn-sm btn-success float-right">Submit</button>
               </form>
         </div>
     </div>

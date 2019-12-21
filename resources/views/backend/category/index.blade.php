@@ -2,8 +2,10 @@
 @section('title','Category')
 
 @section('headercontent')
-@include('alert')
 <div class="container">
+        <div class="row justify-content-center">
+                <div class="col-md-4">@include('alert')</div>
+        </div>
     <nav class="navbar navbar-light justify-content-center">
             <h1>View All Cities</h1>
     </nav>
@@ -26,8 +28,8 @@
                 <td>{{ $data->id }}</td>
                 <td>{{ $data->name }}</td>
                 <td class="text-center">
-                    <a href="{{ url("admin/category/$data->id/edit") }}" class="btn btn-primary mr-3"><i class="fas fa-edit">Edit City</i></a>
-                    <a href="{{ url("admin/category/$data->id/delete") }}" onclick="return confirm('Warning(Not to delete) : That will delete all the products that you post with this category')" class="btn btn-danger"><i class="fas fa-trash-alt">Delete City</i></a>
+                    <a href="{{ url("admin/category/$data->id/edit") }}" class="btn btn-sm btn-primary mr-3"><i class="fas fa-edit mr-2"></i>Edit City</a>
+                    <a href="{{ url("admin/category/$data->id/delete") }}" onclick="return confirm('Warning(Not to delete) : That will delete all the products that you post with this category')" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt mr-2"></i>Delete City</a>
                 </td>
             </tr>
             @endforeach

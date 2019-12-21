@@ -2,8 +2,14 @@
 @section('title','User')
 
 @section('headercontent')
-@include('alert')
+
+
+
+
 <div class="container">
+    <div class="row justify-content-center">
+            <div class="col-md-4">@include('alert')</div>
+    </div>
     <nav class="navbar navbar-light justify-content-center">
             <h1>View All Products</h1>
     </nav>
@@ -11,8 +17,8 @@
 @endsection
 
 @section('bodycontent')
-
 <div class="container">
+
     <div class="row">
         @foreach($products as $product)
         <div class="col-md-4 mt-3">

@@ -13,7 +13,8 @@
         "intervention/image": "^2.5",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
-        "nesbot/carbon": "^2.27"
+        "nesbot/carbon": "^2.27",
+        "select2/select2": "^4.0"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

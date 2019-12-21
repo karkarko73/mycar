@@ -14,50 +14,51 @@ class SearchController extends Controller
     {
         $cities = City::all();
         $cats = Category::all();
-        $products = Product::all();
-        return view('search',compact(['cities','cats','products']));
+        $products = Product::orderBy('name', 'asc')->get();
+        return view('search', compact(['cities', 'cats', 'products']));
     }
 
-    public function find(Request $request)
+    public function searchbyname(Request $request)
     {
-        $city = $request->city;
-        $ecity = explode('.',$city);
+        $name = $request->name;
+        return redirect("user/showsinglebrand/$name");
+        // dd($name);
+    }
+
+    public function findbrand(Request $request)
+    {
         $cat = $request->category;
-        $ecat = explode('.',$cat);
-        $price = $request->price;
-        $eprice = explode('-',$price);
+        $ecat = explode('.', $cat);
 
-        // echo $ecity[0] ."<br>";
-        // echo $ecat[0]."<br>";
-        // echo $request->model ."<br>";
-        // echo $eprice[0]  ."<br>";
+        $products = Product::where('category_id', $ecat[0])->paginate(9);
+        $cities = City::all();
+        $cats = Category::all();
+        return view('backend.search.showbrand', compact(['products', 'cities', 'cats']));
+    }
 
-        die();
-        $result = Product::query();
+    public function findbrandid($id)
+    {
+        $cities = City::all();
+        $cats = Category::all();
+        $products = Product::where('category_id', $id)->paginate(9);
+        return view('backend.search.showbrand', compact(['products', 'cities', 'cats']));
+    }
 
-        if(!empty($ecity[0]))
-        {
-            $results = $result->where('city_id','like', '%'.$ecity[0].'%');
-        }
+    public function show($id)
+    {
+        $product = Product::findOrFail($id);
+        return view('backend.search.showsinglebrand', compact('product'));
+    }
 
-        if(!empty($ecat[0]))
-        {
-            $results = $result->where('category_id','like', '%'.$ecat[0].'%');
-        }
+    public function citybrand($id)
+    {
+        $city = City::findOrFail($id);
+        $cities = City::all();
+        $cats = Category::all();
+        return view('backend.search.showcitybrand', compact(['city', 'cities', 'cats']));
 
-        if(!empty($request->model))
-        {
-            $results = $result->where('name','like', '%'.$request->model.'%');
-        }
-
-        if(!empty($request->price))
-        {
-            $results = $result->whereBetween('price',[$eprice[0],$eprice[1]]);
-        }
-
-        $results->get();
-        dd($results);
+        // foreach($city->products as $product){
+        //     echo $product->name ."<br>";
+        // }
     }
 }
-// https://stackoverflow.com/questions/43637848/laravel-and-php-best-multiple-search-method/43638023#43638023
-// https://stackoverflow.com/questions/31975250/searching-between-two-numbersprices-in-laravel/31975292

@@ -2,8 +2,10 @@
 @section('title','Edit User')
 
 @section('headercontent')
-@include('alert')
 <div class="container">
+        <div class="row justify-content-center">
+                <div class="col-md-4">@include('alert')</div>
+        </div>
     <nav class="navbar navbar-light justify-content-center">
             <h1>Profile Edit</h1>
     </nav>
@@ -63,8 +65,8 @@
                     </div>
                 </div>
 
-                <a href="{{ url('user/personalaccount/'.auth()->user()->id.'/show') }}" class="btn btn-primary" >Back</a>
-                <button type="submit" class="btn btn-success float-right">Submit</button>
+                <a href="{{ url('user/personalaccount/'.auth()->user()->id.'/show') }}" class="btn btn-sm btn-primary">Back</a>
+                <button type="submit" class="btn btn-sm btn-success float-right">Submit</button>
               </form>
         </div>
     </div>

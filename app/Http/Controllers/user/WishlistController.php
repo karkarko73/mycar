@@ -30,7 +30,8 @@ class WishlistController extends Controller
         $data->user_id = auth()->user()->id;
         $data->product_id = $id;
         $data->save();
-        return redirect('user/product')->with('status','Product saved successfully!');
+        // return redirect('user/product')->with('status','Product saved successfully!');
+        return back()->with('status','Product saved successfully!');
 
     }
 
@@ -53,8 +54,10 @@ class WishlistController extends Controller
         // dd($product);
         if($product){
             $product->delete();
-            return redirect('user/mywishlist')->with('status','Remove from product successfully!!');
+            // return redirect('user/mywishlist')->with('status','Remove from product successfully!!');
+            return back()->with('status','Remove from product successfully!!');
         }
         return redirect('user/mywishlist')->with('status','Products not found!!');
+        return back()->with('status','Products not found!!');
     }
 }

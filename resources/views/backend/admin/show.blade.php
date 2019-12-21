@@ -3,6 +3,9 @@
 
 @section('headercontent')
 <div class="container">
+    <div class="row justify-content-center">
+            <div class="col-md-4">@include('alert')</div>
+    </div>
     <nav class="navbar navbar-light justify-content-center">
             <h1>View Product</h1>
     </nav>
@@ -17,8 +20,6 @@
         <div class="col-md-6">
 
             <div class="card">
-                    <!-- Card image -->
-                <!--Carousel Wrapper-->
 
                 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
 
@@ -75,23 +76,23 @@
                     </form>
 
                     <!-- Display comment field -->
-                    <h5 class="text-center"><i>View Comments</i></h5>
-
                     @foreach($product->comments as $comment)
-                        <div class="display-comment">
+                        <div class="display-comment mt-3">
                             <i class="text-muted">Comment about - {{ $comment->created_at->diffForHumans() }}</i><br>
                             <strong>{{ $comment->user->name }}</strong>
                             <p>{{ $comment->body }}</p>
-
+                            <a href="{{ url("user/deletecomment/$comment->id") }}"class="btn btn-sm btn-danger">Del Comment</a>
                         </div>
+                    <hr>
                     @endforeach
+
                     </div>
                     <!-- Button -->
                     <div class="card-footer">
                         <div class="row justify-content-between">
-                                <a href="{{ url("admin/post") }}" class="btn btn-info"><i class="fas fa-arrow-circle-left">Back</i></a>
-                                <a href="{{ url("admin/post/$product->id/edit") }}" class="btn btn-warning"><i class="fas fa-edit">Edit</i></a>
-                                <a href="{{ url("admin/post/$product->id/delete") }}" onclick="return confirm('Are you sure?')" class="btn btn-danger"><i class="fas fa-trash-alt">Delete</i></a>
+                                <a href="{{ url("admin/post") }}" class="btn btn-sm btn-info"><i class="fas fa-arrow-circle-left mr-2"></i>Back</a>
+                                <a href="{{ url("admin/post/$product->id/edit") }}" class="btn btn-sm btn-warning"><i class="fas fa-edit mr-2"></i>Edit</a>
+                                <a href="{{ url("admin/post/$product->id/delete") }}" onclick="return confirm('Are you sure?')" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt mr-2"></i>Delete</a>
                         </div>
                     </div>
                 </div>

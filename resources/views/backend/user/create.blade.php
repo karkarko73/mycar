@@ -3,13 +3,10 @@
 
 @section('headercontent')
 <div class="container">
-
-        <nav class="navbar navbar-light justify-content-center">
-                <a class="navbar-brand" href="#"><h1>Create Product</h1></a>
-        </nav>
-
+    <nav class="navbar navbar-light justify-content-center">
+        <a class="navbar-brand" href="#"><h1>Create Product</h1></a>
+    </nav>
 </div>
-
 @endsection
 
 @section('bodycontent')

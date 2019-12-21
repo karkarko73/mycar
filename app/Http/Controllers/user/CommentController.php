@@ -3,13 +3,14 @@
 namespace App\Http\Controllers\user;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\CommentRequest;
 use App\Http\Controllers\Controller;
 use App\Comment;
 use App\Product;
 
 class CommentController extends Controller
 {
-    public function store(Request $request)
+    public function store(CommentRequest $request)
     {
 
         $comment = new Comment();

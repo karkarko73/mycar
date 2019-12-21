@@ -21,8 +21,10 @@ class CreateProductsTable extends Migration
             $table->bigInteger('price');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->integer('city_id');
-            $table->integer('category_id');
+            $table->unsignedBigInteger('city_id');
+            $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
+            $table->unsignedBigInteger('category_id');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->string('role')->default('user');
             $table->longText('images')->default(null);
             $table->timestamps();

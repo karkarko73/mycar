@@ -3,9 +3,12 @@
 
 @section('headercontent')
 <div class="container">
-        <nav class="navbar navbar-light justify-content-center">
-                <h1>Edit Product</h1>
-        </nav>
+    <div class="row justify-content-center">
+            <div class="col-md-4">@include('alert')</div>
+    </div>
+    <nav class="navbar navbar-light justify-content-center">
+            <h1>Edit Product</h1>
+    </nav>
 </div>
 
 @endsection
