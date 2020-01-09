@@ -1,6 +1,8 @@
 <?php
 
-use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\Route;
+
+
 
 
 ///////////////////////// Backend Admin Product /////////////////////////////
@@ -26,6 +28,7 @@ Route::group(['prefix' => 'user', 'namespace' => 'user', 'middleware' => 'adminu
     Route::post('personalproducts/{id}/edit', 'ProductController@update');
     Route::get('personalproduct/create', 'ProductController@create');
     Route::post('personalproduct/create', 'ProductController@store');
+    Route::get('personalproduct/{id}/delete','ProductController@destroy');
 
 
     ////////////////////// personal user account ////////////////////
@@ -47,6 +50,7 @@ Route::group(['prefix' => 'user', 'namespace' => 'user', 'middleware' => 'adminu
     //////////////////////// Search  /////////////////////////////////
     Route::get('search', 'SearchController@search');
     Route::get('searchbyname', 'SearchController@searchbyname');
+    Route::get('searchbyprice','SearchController@searchbyprice');
     Route::get('findbrand', 'SearchController@findbrand');
     Route::get('findbrand/{id}', 'SearchController@findbrandid');
     Route::get('showsinglebrand/{id}', 'SearchController@show');
@@ -90,6 +94,13 @@ Route::group(['prefix' => 'admin', 'namespace' => 'backend', 'middleware' => 'ad
 Route::group(['namespace' => 'frontend'], function () {
     Route::get('/', 'ProductController@index');
     Route::get('post/{id}/show', 'ProductController@show');
+
+    Route::get('searchbyname', 'SearchController@searchbyname');
+    Route::get('searchbyprice','SearchController@searchbyprice');
+    Route::get('findbrand', 'SearchController@findbrand');
+    Route::get('findbrand/{id}', 'SearchController@findbrandid');
+    Route::get('showsinglebrand/{id}', 'SearchController@show');
+    Route::get('show/city/brand/{id}', 'SearchController@citybrand');
 });
 
 Auth::routes();

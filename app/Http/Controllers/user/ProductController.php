@@ -16,22 +16,22 @@ class ProductController extends Controller
     public function index()
     {
 
-        $products = Product::orderBy('id','desc')->paginate(9);
-        return view('backend.user.index',compact('products'));
+        $products = Product::orderBy('id', 'desc')->paginate(9);
+        return view('backend.user.index', compact('products'));
     }
 
     public function show($id)
     {
         $product = Product::findOrFail($id);
-        return view('backend.user.show',compact('product'));
+        return view('backend.user.show', compact('product'));
     }
 
     /////////////////////////  personal products //////////////////////////
 
     public function personalproducts()
     {
-        $products = Product::where('user_id',auth()->user()->id)->orderBy('id','desc')->get();
-        return view('backend.user.personalproduct',compact('products'));
+        $products = Product::where('user_id', auth()->user()->id)->orderBy('id', 'desc')->get();
+        return view('backend.user.personalproduct', compact('products'));
     }
 
 
@@ -39,7 +39,7 @@ class ProductController extends Controller
     {
         $cities = City::all();
         $cats = Category::all();
-        return view('backend.user.create',compact(['cities','cats']));
+        return view('backend.user.create', compact(['cities', 'cats']));
     }
 
 
@@ -49,13 +49,14 @@ class ProductController extends Controller
         $data = new Product();
 
         $city = $request->city;
-        $cdata = explode('.',$city);
+        $cdata = explode('.', $city);
         $cat = $request->category;
-        $catdata = explode('.',$cat);
+        $catdata = explode('.', $cat);
         // echo $data[0];
 
         $data->name = $request->name;
         $data->model_year = $request->model;
+        $data->license = $request->license;
         $data->city_id = $cdata[0];
         $data->category_id = $catdata[0];
         $data->price = $request->price;
@@ -63,28 +64,27 @@ class ProductController extends Controller
         $data->description = $request->description;
 
 
-        if($request->hasFile('image')){
+        if ($request->hasFile('image')) {
             $images = $request->file('image');
             $imgary = array();
-            foreach($images as $image){
-                $name = uniqid() .'.'. $image->getClientOriginalExtension();
+            foreach ($images as $image) {
+                $name = uniqid() . '.' . $image->getClientOriginalExtension();
                 $path = public_path('/uploads/car_imgs/');
-                $img = Image::make($image)->resize(500,300);
-                $img->save($path.$name);
-                array_push($imgary,$name);
-
+                $img = Image::make($image)->resize(500, 300);
+                $img->save($path . $name);
+                array_push($imgary, $name);
             }
-            $data->images = implode('|' , $imgary) ;
+            $data->images = implode('|', $imgary);
         }
         $data->save();
 
-        return redirect('user/personalproducts')->with('status','Product create successfully!');
+        return redirect('user/personalproducts')->with('status', 'Product create successfully!');
     }
 
     public function personalproductshow($id)
     {
         $product = Product::findOrFail($id);
-        return view('backend.user.personalproductshow',compact('product'));
+        return view('backend.user.personalproductshow', compact('product'));
     }
 
     public function edit($id)
@@ -92,7 +92,7 @@ class ProductController extends Controller
         $cities = City::all();
         $cats = Category::all();
         $product = Product::findOrFail($id);
-        return view('backend.user.personalproductedit',compact(['product','cats','cities']));
+        return view('backend.user.personalproductedit', compact(['product', 'cats', 'cities']));
     }
 
 
@@ -101,14 +101,15 @@ class ProductController extends Controller
         $data = Product::findOrFail($id);
 
         $city = $request->city;
-        $cdata = explode('.',$city);
+        $cdata = explode('.', $city);
         $cat = $request->category;
-        $catdata = explode('.',$cat);
+        $catdata = explode('.', $cat);
         // echo $data[0];
 
 
         $data->name = $request->name;
         $data->model_year = $request->model;
+        $data->license = $request->license;
         $data->city_id = $cdata[0];
         $data->category_id = $catdata[0];
         $data->price = $request->price;
@@ -117,33 +118,45 @@ class ProductController extends Controller
         // dd($data->images);
 
 
-        if($request->hasFile('image')){
+        if ($request->hasFile('image')) {
             $images = $request->file('image');
             $imgary = array();
 
             // dd($imgary);
-            foreach($images as $image){
-                $name =  uniqid() .'.'. $image->getClientOriginalExtension();
+            foreach ($images as $image) {
+                $name =  uniqid() . '.' . $image->getClientOriginalExtension();
                 $path = public_path('/uploads/car_imgs/');
-                $img = Image::make($image)->resize(500,300);
-                $img->save($path.$name);
-                array_push($imgary,$name);
+                $img = Image::make($image)->resize(500, 300);
+                $img->save($path . $name);
+                array_push($imgary, $name);
             }
-            $impimg = implode('|',$imgary);
+            $impimg = implode('|', $imgary);
 
-            $result = $data->images .'|'. $impimg ;
+            $result = $data->images . '|' . $impimg;
             // dd($result);
             $data->images = $result;
-
         }
         $data->save();
 
-        return redirect('user/personalproducts')->with('status','Product Updated successfully!');
+        return redirect('user/personalproducts')->with('status', 'Product Updated successfully!');
     }
 
 
     public function destroy($id)
     {
-        //
+        $data = Product::findOrFail($id);
+        if ($data) {
+            $path = public_path('/uploads/car_imgs/');
+            $file = $data->images;
+
+            foreach (explode('|', $file) as $result) {
+                // var_dump($result) ."<br>";
+                // dd($path.$result);
+                unlink($path . $result);
+            }
+
+            $data->delete();
+        }
+        return redirect('user/personalproducts')->with('status', 'Post Deleted Successfully!');
     }
 }

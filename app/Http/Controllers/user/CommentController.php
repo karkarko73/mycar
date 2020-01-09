@@ -21,20 +21,16 @@ class CommentController extends Controller
         $product->comments()->save($comment);
 
         return back();
-
     }
 
     public function destroy($id)
     {
         $comment = Comment::findOrFail($id);
-        // echo "comment user_id ". $comment->user_id ."<br>";
-        // echo "product creator user_id ". $comment->product->user_id ."<br>";
 
-        if(auth()->user()->id == $comment->user_id || auth()->user()->id == $comment->product->user_id )
-        {
+        if (auth()->user()->id == $comment->user_id || auth()->user()->id == $comment->product->user_id) {
             $comment->delete();
-            return back()->with('status','Comment deleted successfully!');
+            return back()->with('status', 'Comment deleted successfully!');
         }
-            return back()->with('status','You cannot deleted!');
+        return back()->with('status', 'You cannot deleted!');
     }
 }

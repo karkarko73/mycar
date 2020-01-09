@@ -27,6 +27,7 @@ class ProductRequest extends FormRequest
             'name' => 'required',
             'model' => 'required',
             'city' => 'required',
+            'license' => 'required',
             'category' => 'required',
             'price' => 'required',
             'description' => 'required',
@@ -34,11 +35,11 @@ class ProductRequest extends FormRequest
         ];
     }
 
-    public function messages()
-    {
-        return [
-            'city.required' => 'City field is required',
-            'category.required' => 'Category field is required'
-        ];
-    }
+    // public function messages()
+    // {
+    //     return [
+    //         'city.required' => 'City field is required',
+    //         'category.required' => 'Category field is required'
+    //     ];
+    // }
 }

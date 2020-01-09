@@ -10,6 +10,7 @@ use Intervention\Image\Facades\Image;
 use App\Product;
 use App\City;
 use App\Category;
+use App\Http\Requests\ProductEditRequest;
 
 class ProductController extends Controller
 {
@@ -45,6 +46,7 @@ class ProductController extends Controller
 
         $data->name = $request->name;
         $data->model_year = $request->model;
+        $data->license = $request->license;
         $data->city_id = $cdata[0];
         $data->category_id = $catdata[0];
         $data->price = $request->price;
@@ -89,9 +91,8 @@ class ProductController extends Controller
     }
 
 
-    public function update(Request $request, $id)
+    public function update(ProductEditRequest $request, $id)
     {
-        // $data = Product::findOrFail($id);
         $data = Product::findOrFail($id);
 
         $city = $request->city;
@@ -103,6 +104,7 @@ class ProductController extends Controller
 
         $data->name = $request->name;
         $data->model_year = $request->model;
+        $data->license = $request->license;
         $data->city_id = $cdata[0];
         $data->category_id = $catdata[0];
         $data->price = $request->price;

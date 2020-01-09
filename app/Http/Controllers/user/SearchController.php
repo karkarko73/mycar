@@ -36,6 +36,16 @@ class SearchController extends Controller
         return view('backend.search.showbrand', compact(['products', 'cities', 'cats']));
     }
 
+    public function searchbyprice(Request $request)
+    {
+        $price = $request->price;
+        $eprice = explode('.', $price);
+        $products = Product::whereBetween('price', [$eprice[0], $eprice[1]])->paginate(9);
+        $cities = City::all();
+        $cats = Category::all();
+        return view('backend.search.showbyprice', compact(['products', 'cities', 'cats']));
+    }
+
     public function findbrandid($id)
     {
         $cities = City::all();

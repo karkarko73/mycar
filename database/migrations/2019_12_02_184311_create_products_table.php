@@ -17,6 +17,7 @@ class CreateProductsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->integer('model_year');
+            $table->string('license');
             $table->longText('description');
             $table->bigInteger('price');
             $table->unsignedBigInteger('user_id');
