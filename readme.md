@@ -11,7 +11,7 @@
 - Regna Template for front end UI
 - Laravel Passport
 - Validation
-- Password Hasing
+- Password Hashing
 - User and post are joining with foreign key
 
 # How To Install
