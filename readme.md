@@ -1,4 +1,3 @@
-<h1>My Project</h1>
 # About project
 - You can create your own account look for cars who post in this project.
 - You can also post your car,you can save other post that you like.
